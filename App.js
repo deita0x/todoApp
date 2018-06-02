@@ -1,20 +1,31 @@
 import React from 'react';
+import { View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
-import TodoList from './TodoList';
+import HomeScreen from './HomeScreen'
+import AddTodoForm from './AddTodoForm';
+
+const Navigation = createStackNavigator(
+  {
+    Home: HomeScreen,
+    AddTodoForm: AddTodoForm
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  }
+);
 
 export default class App extends React.Component {
-  state = {
-    todos: [
-      { id: 1, title: 'Learn react native.' },
-      { id: 2, title: 'Learn redux.' },
-      { id: 3, title: 'Learn expo.' }
-    ]
-  };
-
   render() {
-    return (
-      <TodoList todos={this.state.todos} />
-    );
+    return <Navigation />;
   }
 }
-

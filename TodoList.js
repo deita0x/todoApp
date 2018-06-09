@@ -13,7 +13,7 @@ import TodoRow from './TodoRow';
 const renderItem = ({item}) => <TodoRow todo={item} />;
 const keyExtractor = item => item.id.toString();
 
-const TodoList = ({todos, addTodo}) => {
+const TodoList = ({todos, openTodoForm}) => {
   return (
     <View style={styles.container}>
       <FlatList
@@ -23,7 +23,7 @@ const TodoList = ({todos, addTodo}) => {
       />
       <TouchableHighlight 
         style={styles.addButton}
-        onPress={addTodo}
+        onPress={openTodoForm}
       >
         <Text style={styles.label}>Add Task</Text>
       </TouchableHighlight>
@@ -38,7 +38,7 @@ TodoList.propTypes = {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f9f7f6',
-    paddingTop: 40,
+    paddingTop: 20,
     flex: 1,
     justifyContent: 'flex-start'
   },
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 30,
     marginRight: 30,
-    borderRadius:10
+    borderRadius: 10
   },
   label: {
     color: '#fff',

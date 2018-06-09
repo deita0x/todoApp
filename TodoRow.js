@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
     marginLeft: 20,
-    marginRight: 20
+    marginRight: 20,
+    borderRadius: 10
   },
   label: {
     color: '#fff'

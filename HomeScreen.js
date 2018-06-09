@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 import TodoList from './TodoList';
 
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Todo App'
   };
@@ -17,15 +17,31 @@ export default class HomeScreen extends React.Component {
     ]
   };
 
-  addTodo = () => {
-    this.props.navigation.navigate('AddTodoForm');
+  openTodoForm = () => {
+    this.props.navigation.navigate(
+      'AddTodoForm',
+      {
+        addTodo: this.addTodo
+      }
+    );
+  }
+
+  addTodo = (taskText) => {
+    const lastTask = this.state.todos[this.state.todos.length - 1]
+    console.log('taskText: ', taskText);
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        { id: lastTask.id + 1, title: taskText }
+      ]
+    });
   }
 
   render() {
     return (
       <TodoList
         todos={this.state.todos}
-        addTodo={this.addTodo}
+        openTodoForm={this.openTodoForm}
       />
     );
   }
